@@ -1,3 +1,8 @@
+.navbar {
+    background: white;
+    padding: 10px;
+    margin: 10px;
+}
 body, .jumbotron {
     background: red;
     color: white;
