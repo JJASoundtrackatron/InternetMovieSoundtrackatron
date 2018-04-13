@@ -1,9 +1,33 @@
 .navbar {
-    background: white;
-    padding: 10px;
-    margin: 10px;
+    background:rgba(255, 0, 0, 0.3);
 }
+
 body, .jumbotron {
-    background: red;
+    font-family: 'Quicksand', sans-serif;
     color: white;
+    margin-top: 50px;
+}
+
+body {
+    background-image: url("../images/yellowred.svg");
+}
+
+.jumbotron {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+.panel, .panel-heading {
+    background: rgba(255, 0, 0, 0.3);
+}
+
+.modal-body {
+    color: black
+}
+
+.modal-content {
+    background: darkorange;
+}
+
+.btn-secondary {
+    color: black;
 }
