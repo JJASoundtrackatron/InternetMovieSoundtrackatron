@@ -1,31 +1,243 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-	<!-- stylesheet reference -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:700" rel="stylesheet">
+    <script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+	</script>
 </head>
-
 <body>
-	
-	<div id="animalButtons">
-	</div>
-	
-	<div id="animalForm">
-		<label for="animal-input">Add an animal
-		</label>
-		<input type="text" id="animal-input">gif
-		<input id="addAnimal" type="submit" value="Submit">
-	</div>
-	
-	<div id="animals" style="display:inline-flex;flex-wrap: wrap;">
-	</div>
-	
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+    <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+        <a class="navbar-brand">INTERNET MOVIE SOUNDTRACKATRON</a>
+          <input class="form-control mr-md-6 search-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="search-submit btn btn-outline-success my-2 my-sm-0">Search</button>
+      </nav>
 
-	<script src="ajax.js"></script>
+  <div class="container">
+  <div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#navbar-collapse" data-toggle="collapse" type="button">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div>
+	<style>
+		body {font-family: Arial, Helvetica, sans-serif;}
+		
+		/* Full-width input fields */
+		input[type=text], input[type=password] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+		
+		/* Set a style for all buttons */
+		button {
+			background-color:rgba(255, 0, 0, 0.3);
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+		}
+		
+		button:hover {
+			opacity: 0.8;
+		}
+		
+		/* Extra styles for the cancel button */
+		.cancelbtn {
+			width: auto;
+			padding: 10px 18px;
+			background-color: #f44336;
+		}
+		
+		/* Center the image and position the close button */
+		.imgcontainer {
+			text-align: center;
+			margin: 24px 0 12px 0;
+			position: relative;
+		}
+		
+		img.avatar {
+			width: 40%;
+			border-radius: 50%;
+		}
+		
+		.container {
+			padding: 16px;
+		}
+		
+		span.psw {
+			float: right;
+			padding-top: 16px;
+		}
+		
+		/* The Modal (background) */
+		.modal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			padding-top: 60px;
+		}
+		
+		/* Modal Content/Box */
+		.modal-content {
+			background-color: #fefefe;
+			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+			border: 1px solid #888;
+			width: 80%; /* Could be more or less, depending on screen size */
+		}
+		
+		/* The Close Button (x) */
+		.close {
+			position: absolute;
+			right: 25px;
+			top: 0;
+			color: #000;
+			font-size: 35px;
+			font-weight: bold;
+		}
+		
+		.close:hover,
+		.close:focus {
+			color: red;
+			cursor: pointer;
+		}
+		
+		/* Add Zoom Animation */
+		.animate {
+			-webkit-animation: animatezoom 0.6s;
+			animation: animatezoom 0.6s
+		}
+		
+		input {
+			background-color: rgba(255, 0, 0, 0.3);
+			color: black;
+		}
+		@-webkit-keyframes animatezoom {
+			from {-webkit-transform: scale(0)} 
+			to {-webkit-transform: scale(1)}
+		}
+			
+		@keyframes animatezoom {
+			from {transform: scale(0)} 
+			to {transform: scale(1)}
+		}
+		
+		/* Change styles for span and cancel button on extra small screens */
+		@media screen and (max-width: 300px) {
+			span.psw {
+			   display: block;
+			   float: none;
+			}
+			.cancelbtn {
+			   width: 100%;
+			}
+		}
+
+		</style>
+		
+		<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+		
+		<div id="id01" class="modal">
+		  
+		  <form class="modal-content animate" action="/action_page.php">
+		
+			<div class="container">
+			  <label for="uname"><b>Username</b></label>
+			  <input type="text" placeholder="Enter Username" name="uname" required>
+		
+			  <label for="psw"><b>Password</b></label>
+			  <input type="password" placeholder="Enter Password" name="psw" required>
+				
+			  <button type="submit">Login</button>
+			  <label>
+				<input type="checkbox" checked="checked" name="remember"> Remember me
+			  </label>
+			</div>
+		
+			<div class="container" style="background-color:#f1f1f1">
+			  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+			  <span class="psw">Forgot <a href="#">password?</a></span>
+			</div>
+		  </form>
+		</div>
+</div>
+    <div class="container">  
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+            <h1 class="text-center">INTERNET MOVIE SOUNDTRACKATRON</h1>
+            <h2 class="text-center">Hi Dude</h2>
+    </div>    
+    <!-- Most Recent Shows Panel -->
+    <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">About</h3>
+              </div>
+              <div class="panel-body" id="movie-info">
+                <h2 id="movie-title"></h2>
+                <div id="movie-plot"> </div>
+            </div>
+          </div>
+    
+        </div>
+          
+    <!-- Lyrics Panel -->
+    <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Soundtrack</h3>
+              </div>
+              <div class="panel-body" id="recent-member">
+                <h4 id="sound-track-desc"></h4>
+                <a id="sound-track-link"></a>
+                <a id="sound-track-link" href=""></a>
+            </div>
+          </div>
+    
+        </div>
+    
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
