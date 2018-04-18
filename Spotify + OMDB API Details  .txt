@@ -1,0 +1,7 @@
+Spotify API Details 
+
+Race1234 (password for spotify account) 
+
+4171fa9a (API key for OMDB) 
+
+http://www.omdbapi.com/?i=tt3896198&apikey=4171fa9a
