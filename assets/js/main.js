@@ -63,8 +63,8 @@ $(document).on("click", "#reg-user", function(){
 
     var auth = firebase.auth()
 
-    var promise = auth.createUserWithEmailAndPassword(txtEmail,txtPassword)
-    promise.catch(e => console.log(e.message))
+    var registerMe = auth.createUserWithEmailAndPassword(txtEmail,txtPassword)
+    registerMe.catch(e => console.log(e.message))
 
 })
 
