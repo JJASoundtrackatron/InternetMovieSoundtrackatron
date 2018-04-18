@@ -1,5 +1,5 @@
 
-var omdbUrl = "http://www.omdbapi.com/?apikey=4171fa9a&type=movie&plot=short&t="
+var omdbUrl = "https://www.omdbapi.com/?apikey=4171fa9a&type=movie&plot=short&t="
 var wikiUrl = "https://en.wikipedia.org/w/api.php?format=json&action=opensearch&search="; //Mary_Poppins_(soundtrack)"
 
 var responder = function(response) {
