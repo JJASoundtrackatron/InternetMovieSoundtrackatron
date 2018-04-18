@@ -24,7 +24,7 @@ $( document ).ready(function() {
 
     var dbRefListSoundTracks = dbRefListUsers.child('soundtracks')
 
-
+$("#logout-user").hide()
 
 
 
@@ -33,6 +33,8 @@ $( document ).ready(function() {
 
 $(document).on("click", "#add-user", function(){
 event.preventDefault()
+
+$("#logout-user").show()
 
 //get elements for login
 var txtEmail = $("#txtEmail").val()
@@ -56,7 +58,7 @@ $(document).on("click", "#reg-user", function(){
     var txtEmail = $("#txtEmail").val()
     var txtPassword = $("#txtPassword").val()
 
-    txtEmail = "carrering@gmail.com"
+    
     //TODO - Need to check for real email later
 
     var auth = firebase.auth()
@@ -72,10 +74,21 @@ $(document).on("click", "#reg-user", function(){
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
         console.log("this is a firebase user:", firebaseUser)
+        $("#logout-user").show()
     }
     else{
         console.log("not logged in")
+        $("#logout-user").hide()
     }
+})
+
+
+// Log out
+
+$(document).on("click", "#logout-user", function(){
+    event.preventDefault()
+    firebase.auth().signOut()
+
 })
 
   
