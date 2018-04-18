@@ -53,34 +53,34 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
            <div class="navbar-right col-sm-9">
-            <form action="/login" class="navbar-form row" method="post" role="form">
-                <div class="col-sm-3 col-sm-offset-5">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-user"></i>
-                        </span>
-                        <input class="form-control" name="andrew_id" placeholder="Enter Name" type="text">
-                        <button class="btn btn-default" id="add-player" type="submit">Login</button>
-
-                    </div>
-                </div>
-            </form>
-            <form action="/search" class="navbar-form row" method="post" role="form">
+             
                 <div class="col-sm-3">
+                    <form action="/search" class="navbar-form row" method="post" role="form">
                     <div class="input-group">
                         <span class="input-group-addon">
                           <i class="
                           glyphicon glyphicon-search"></i>
                         </span>
-                        <input class="form-control" name="secret" placeholder="Search" type="search">
-                       
+                        <input class="form-control search-bar" name="search" placeholder="Search" type="search">
+                        <button class="btn btn-primary" type="submit">Search</button>
                     </div>
-                    
-                <!-- </div>
-                <div class="col-sm-1">
-                <button class="btn btn-primary" type="submit">Log In</button>
-                </div> -->
-            </form>
+                  </form>
+                </div>
+           
+
+                <div class="col-sm-3 col-sm-offset-5">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        <input name="andrew_id" placeholder="Email" class="form-text" id="txtEmail" type="text">
+                        <input name="andrew_pw" placeholder="Password" class="form-text" id="txtPassword" type="password">
+                        <button class="btn btn-default" id="add-user" type="submit">Login</button>
+                        <button class="btn btn-secondary" id="reg-user">Register</button>
+                        <button class="btn btn-action hide" id="logout-user">Log out</button>
+                    </div>
+                </div>
+
         </div>
         </div>
     </div>
