@@ -25,7 +25,7 @@
 
     var dbRefListSoundTracks = dbRefListUsers.child('soundtracks')
 
-$("#logout-user").hide()
+// $("#logout-user").hide()
 
 
 
@@ -69,17 +69,26 @@ $(document).on("click", "#reg-user", function(){
 
 })
 
+function fireoffme(){
 
+console.log("show me the money!")
+
+}
 // Real-Time Authentication Listener
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
-        console.log("this is a firebase user:", firebaseUser)
+        // console.log("yeah, this is a firebase user:", firebaseUser)
         $("#logout-user").show()
+        fireoffme()
+        document.getElementById('id01').style.display='none'
+        console.log("hello?")
+        $("#main-button").hide()
     }
     else{
         console.log("not logged in")
         $("#logout-user").hide()
+        $("#main-button").show()
     }
 })
 
