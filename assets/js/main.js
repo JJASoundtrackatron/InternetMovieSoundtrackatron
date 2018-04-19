@@ -2,21 +2,31 @@
 var omdbUrl = "https://www.omdbapi.com/?apikey=4171fa9a&type=movie&plot=short&t="
 var wikiUrl = "https://en.wikipedia.org/w/api.php?format=json&action=opensearch&search="; //Mary_Poppins_(soundtrack)"
 
+
+
 var responder = function(response) {
 	      	var title = response.Title;
 	      	var actors = response.Actors;
 	      	var genre = response.Genre;
-	      	var plot = response.Plot;
-	      	if (title && plot) {
+	      	var plot = response.Plot;	      	
+	      	var poster = response.Poster;
+	      	console.log(response.Poster);
+
+	      	if (title && plot && poster) {
 	      		$("#movie-title").html(title);
 	      		$("#movie-plot").html(plot);
-	      		getSndTrkData(title);
+	      		$("#movie-poster").attr("src", poster);
+	      		getSndTrkData(title);	      		
 	      	}
 	      	else {
 	      		$("#movie-title").html("Movie not found. Please search again.");
 	      		$("#movie-plot").html("");
 	      	}
 	      }
+
+
+
+
 
 var sndTrkResponder = function(response) {
 	      	var sndTrDesc = response[2][0];
