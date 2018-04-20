@@ -33,3 +33,17 @@ body {
 .btn-secondary {
     color: black;
 }
+
+.form-text{
+    color:black;
+
+}
+
+.search-bar{
+    float:left;
+}
+
+.search-row{
+    position:relative;
+    margin-top:20px;
+}
