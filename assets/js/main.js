@@ -221,10 +221,12 @@ var responder = function(response) {
 	      	var title = response.Title;
 	      	var actors = response.Actors;
 	      	var genre = response.Genre;
-	      	var plot = response.Plot;
-	      	if (title && plot) {
+            var plot = response.Plot;
+            var poster = response.Poster;  
+	      	if (title && plot && poster) {
 	      		$("#movie-title").html(title);
-	      		$("#movie-plot").html(plot);
+                  $("#movie-plot").html(plot);
+                  $("#movie-poster").attr("src", poster);
 	      		getSndTrkData(title);
 	      	}
 	      	else {
@@ -280,4 +282,6 @@ var readyFn = function() {
 }
 
 $(document).ready(readyFn)
+
+
 
