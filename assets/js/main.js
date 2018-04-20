@@ -13,23 +13,15 @@
       }
       firebase.initializeApp(config)
       
-    // Assign the reference to the database to a variable named 'database'
-    // var database = ...
-    
-    var db = firebase.database()
 
-  //create references
-    var dbRefObject = db.ref().child('imstt')
+// create a var to hold the uid
 
-    var dbRefListUsers = dbRefObject.child('users')
-
-    var dbRefListSoundTracks = dbRefListUsers.child('soundtracks')
-
-// $("#logout-user").hide()
+var appUID = "undefined"
 
 
 
 
+// Firebase Authentication
 // Login Event
 
 $(document).on("click", "#add-user", function(){
@@ -65,49 +57,108 @@ $(document).on("click", "#reg-user", function(){
     var auth = firebase.auth()
 
     var registerMe = auth.createUserWithEmailAndPassword(txtEmail,txtPassword)
+    registerMe.then(function(firebaseUser){
+        console.log("regisiterme email: ",firebaseUser.uid)
+        writeUserData(firebaseUser.uid, firebaseUser.email)
+    })
     registerMe.catch(e => console.log(e.message))
+
+   
+    
 
 })
 
-function fireoffme(){
 
-console.log("show me the money!")
-
-}
 // Real-Time Authentication Listener
 
 firebase.auth().onAuthStateChanged(firebaseUser => {
     if(firebaseUser){
-        // console.log("yeah, this is a firebase user:", firebaseUser)
+        console.log("yeah, this is a firebase user:", firebaseUser)
         $("#logout-user").show()
-        fireoffme()
         document.getElementById('id01').style.display='none'
         console.log("hello?")
         $("#main-button").hide()
+        $("#greetings-dude").html("Hi " + firebaseUser.email)
+        appUID = firebaseUser.uid
+        console.log("uid: ",firebaseUser.uid)
     }
     else{
         console.log("not logged in")
         $("#logout-user").hide()
         $("#main-button").show()
+        $("#greetings-dude").empty()
     }
 })
 
 
 // Log out
-
 $(document).on("click", "#logout-user", function(){
+    console.log("logout happened bro: ", appUID)
     event.preventDefault()
     firebase.auth().signOut()
 
 })
+// END Firebase Authentication
 
-  
+var arraySearchKeys = []
+
+
+// Firebase Database 
+// Assign the reference to the database to a variable named 'database'
+// var database = ...
+
+var db = firebase.database()
+
+//create references
+var dbRefObject = db.ref().child('search/')
+
+var dbRefListSearches = dbRefObject.child('searchterm')
+
+
+
+  // write new user data
+  function writeUserData(userId, email) {
+    firebase.database().ref('imstron/' + userId).set({
+      email: email
+    })
+  }
+
+
+
+
+
+  // add search item
+  function pushSearch(userId, searchTerm) {
+    var user = firebase.auth().currentUser
+
+    var usersRef = firebase.database().ref('search')
+    if(user){
+
+        usersRef.child(user.uid).push({
+            searchterm: searchTerm
+        })
+        .then(res => {
+            console.log(res.getKey())
+            arraySearchKeys.push(res.getKey())
+        })
+
+    }
+
+    // firebase.database().ref('search/'+userId+'/').push({
+    //   searchterm: searchTerm
+    // })
+ 
+  }
+
+
   //sync object changes
   // dbRefObject.on('value', snap => console.log(snap.val()))
-  
-  dbRefObject.on('value', snap => {
+ 
+   dbRefObject.on('value', snap => {
   //    preObject.innerText = JSON.stringify(snap.val(),null,3)
-  $("#object").text(JSON.stringify(snap.val(),null,3))
+//   $("#object").text(JSON.stringify(snap.val(),null,3))
+  console.log("child value: ",JSON.stringify(snap.val(),null,3))
+  
   
   })
   
@@ -117,12 +168,22 @@ $(document).on("click", "#logout-user", function(){
   // sync list child added
   // dbRefList.on('child_added', snap => console.log(snap.val()))
   // only cares about child added. not removed or changed
-  dbRefListSoundTracks.on('child_added', snap => {
-      var newLi = $("<li>")
-      newLi.attr("id", snap.key) //snap.key adds the database ID
-      newLi.attr("class", "soundtrack-item")
-      newLi.text(snap.val())
-      $("#list").append(newLi)
+  dbRefObject.on('child_added', snap => {
+
+    var searchObject = snap.val()
+    console.log("search object value: ",JSON.stringify(searchObject,null,3))
+
+    for(i=0;i<arraySearchKeys.length;i++){
+        console.log("where are my keys:",arraySearchKeys[i])
+    }
+      var newTR = $("<tr>")
+      var newTD = $("<td>")
+      newTD.attr("id", snap.key) //snap.key adds the database ID
+      newTD.attr("class", "search-item")
+      newTD.text(snap.val())
+      var newDelTD = $("<td>")
+      var newEntry = newTR.text(newTD+newDelTD)
+      $("#search-head").append(newEntry)
   
   })
   
@@ -131,7 +192,7 @@ $(document).on("click", "#logout-user", function(){
   
   // sync changed items
   
-  dbRefListSoundTracks.on('child_changed', snap =>{
+  dbRefObject.on('child_changed', snap =>{
       // var liChanged = document.getElementById(snap.key)
       var liChanged = $('#'+snap.key)
       $(liChanged).html(snap.val())
@@ -142,12 +203,10 @@ $(document).on("click", "#logout-user", function(){
   
   // sync removed items
   
-  dbRefListSoundTracks.on('child_removed', snap =>{
+  dbRefObject.on('child_removed', snap =>{
       var liRemoved = $('#'+snap.key)
       $(liRemoved).remove()
   })
-
-
 
 
  
@@ -213,7 +272,8 @@ function getMovieData(search) {
 
 var readyFn = function() {
 	var clicker = function() {
-		var searchTerm = $(".search-input").val().trim();
+        var searchTerm = $(".search-input").val().trim();
+        pushSearch(appUID, searchTerm)
 		getMovieData(searchTerm);
 	};
 	$(".search-submit").click(clicker);	
